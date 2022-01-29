@@ -75,14 +75,16 @@ const calculatorDisplay = document.querySelector('.calculator > .display');
 let currentDisplayValue = calculatorDisplay.textContent;
 let firstDisplayValue = null;
 let operatorValue = null;
+let resetOperator = true;
 
 
 /* Button event handlers */
 const numberButtons = document.querySelectorAll('.calculator > .number');
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (operatorValue) {
+        if (operatorValue && resetOperator) {
             clearDisplay(calculatorDisplay);
+            resetOperator = false;
         }
 
         updateDisplay(calculatorDisplay, button.textContent);
@@ -96,6 +98,7 @@ operatorButtons.forEach((button) => {
             performOperation();
         }
 
+        resetOperator = true;
         saveFirstValues(button.textContent);
     });
 });
