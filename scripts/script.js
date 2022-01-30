@@ -34,13 +34,17 @@ function operate(operator, num1, num2) {
 }
 
 function updateDisplay(displayDiv, itemToAdd) {
-    displayDiv.textContent += itemToAdd;
+    if (displayDiv.textContent === '0') {
+        displayDiv.textContent = itemToAdd;
+    } else {
+        displayDiv.textContent += itemToAdd;
+    }
     currentDisplayValue = displayDiv.textContent;
     return displayDiv;
 }
 
 function clearDisplay(displayDiv) {
-    displayDiv.textContent = '';
+    displayDiv.textContent = '0';
     currentDisplayValue = '';
 }
 
